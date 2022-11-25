@@ -68,6 +68,7 @@ export class App extends React.Component {
 
   render() {
     const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback();
     return (
       <>
         <h2>Please leave Feedback</h2>
@@ -75,18 +76,19 @@ export class App extends React.Component {
           options={Object.keys(this.state)}
           onLeaveFeedback={this.handlerChange}
         />
-        <h2>Statistics</h2>
-        {this.countTotalFeedback() === 0 ? (
-          <Notification message="There is no feedback"></Notification>
-        ) : (
+        <div>
+          <h2>Statistics</h2>
+          {/* {this.countTotalFeedback() === 0 && (
+            <Notification message="There is no feedback"></Notification>
+          )} */}
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={this.countTotalFeedback()}
+            total={total}
             positiveFeedback={this.countPositiveFeedbackPercentage()}
           />
-        )}
+        </div>
       </>
     );
   }
